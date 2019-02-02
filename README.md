@@ -10,9 +10,7 @@ Server, API, DB, testing, Auth
 
 This is preliminary, but my thoughts are: stories:
 
-`[
-
-    {
+`[ {
 
         id: 1,
         name: 'Anonymous',
