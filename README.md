@@ -73,7 +73,29 @@ users:
 
         email:
 
+    }
 
+]
+
+##### Stretch:
+
+refugeeOrganizations:
+
+[
+
+    {
+
+        id: 1,
+
+        name: Refugees R us
+
+        address:
+
+        website:
+
+        email:
+
+        gpslocation:
 
     }
 
