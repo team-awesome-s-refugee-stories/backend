@@ -8,14 +8,16 @@ exports.seed = function(knex, Promise) {
 				{
 					id: 1,
 					username: 'admin',
-					password: 'admin',
+					password:
+						'$2a$12$/RIyLpjZCYkji4.Ps/hmZe6Mp3ZFLy/xR2KZqkzHGESHLaAF9LR4m',
 					first: 'Admin',
 					last: 'Astration'
 				},
 				{
 					id: 2,
 					username: 'jeff',
-					password: 'password',
+					password:
+						'$2a$12$/RIyLpjZCYkji4.Ps/hmZe6Mp3ZFLy/xR2KZqkzHGESHLaAF9LR4m',
 					first: 'Jeff',
 					last: 'Jefferson'
 				}

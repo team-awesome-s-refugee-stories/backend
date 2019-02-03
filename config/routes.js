@@ -1,18 +1,19 @@
-const axios = require('axios');
 const bcrypt = require('bcryptjs');
 const db = require('../dbConfig');
 
 const {authenticate, generateToken} = require('../auth/authenticate');
 
 module.exports = server => {
-	server.get('/', (req, res) => {
-		res.send('API running');
-	});
-
-	server.post('/api/register', register);
-	server.post('/api/login', login);
-	server.get('/api/jokes', authenticate, getJokes);
+	server.get('/', sanityCheck); //sanity Check
+	server.post('/api/register', register); //register a new user
+	server.post('/api/login', login); //login a user
+	server.get('/api/allstories', authenticate, getAllStories); //get all possible stories
+	server.get('/api/stories', getStories); //get only the stories that have been approved
 };
+
+function sanityCheck(req, res) {
+	res.send('API running');
+}
 
 function register(req, res) {
 	// implement user registration
@@ -43,23 +44,31 @@ function login(req, res) {
 					token
 				});
 			} else {
-				res.status(401).json({you: 'Incorrect username or password'});
+				res.status(401).json({
+					message: 'Incorrect username or password'
+				});
 			}
 		})
 		.catch(err => res.status(500).json(err));
 }
 
-function getJokes(req, res) {
-	const requestOptions = {
-		headers: {accept: 'application/json'}
-	};
-
-	axios
-		.get('https://icanhazdadjoke.com/search', requestOptions)
-		.then(response => {
-			res.status(200).json(response.data.results);
+function getAllStories(req, res) {
+	db('stories')
+		.then(stories => {
+			res.status(201).json(stories);
 		})
-		.catch(err => {
-			res.status(500).json({message: 'Error Fetching Jokes', error: err});
-		});
+		.catch(err =>
+			res.status(500).json({message: 'Database error', error: err})
+		);
+}
+
+function getStories(req, res) {
+	db('stories')
+		.where({approved: 1})
+		.then(stories => {
+			res.status(201).json(stories);
+		})
+		.catch(err =>
+			res.status(500).json({message: 'Database error', error: err})
+		);
 }
