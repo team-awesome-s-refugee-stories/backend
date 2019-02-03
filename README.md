@@ -25,13 +25,48 @@ organizations near you to volunteer with.
 
 -   git clone
 -   cd into backend folder
--   run yarn to get dependancies
--   run "yarn start" to start
+-   run `yarn` to get dependancies
+-   run `yarn start` to start server
 -   the server is set to listen on port 3300
--   sending a get request to `http://localhost:3300/` should recieve the status
-    code "API running"
+-   sending a `GET` request to `http://localhost:3300/` should recieve the
+    status code "API running"
 
-#### DB Structure
+## ACTIVE API Routs
+
+#### Sanity Check:
+
+`GET` `/`
+
+RETURNS: "API running"
+
+#### Register a new user:
+
+`POST` `/api/register` Send with Body: {username: `username`, password:
+`password`, first: `first`, last: `last`}
+
+RETURNS: [ `id` ]
+
+#### Login a user:
+
+`POST` `/api/login` Send with Body: {username: `username`, password: `password`}
+
+RETURNS: { "loggedInAs": `admin`, "token": `...KJGVFKJHDVAKDJBF...` } ( Be sure
+to save the token in localStorage, and pass it in the Authorization tag on the
+Header. Token expires after 30min. )
+
+#### Get all possible stories
+
+`GET` `/api/allstories` Send with header: {Authorization : `token`}
+
+RETURNS: [ ... all info about all of the stories ... ]
+
+#### Get approved stories
+
+`GET` `/api/stories`
+
+RETURNS: [ ... all info about all of the stories which have been approved ... ]
+
+## DB Structure
 
 This is preliminary, but my thoughts are:
 
