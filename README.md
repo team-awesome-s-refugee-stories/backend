@@ -17,11 +17,17 @@ can come to the site and submit my story without logging in.
 Create a connect page that shows a google map to show the nearest refugee
 organizations near you to volunteer with.
 
-### DB, Server, API, testing, Auth
+## SERVER STATUS:
+
+2-3-19: Works only on local machine
+
+### To set up the server locally:
 
 -   git clone
 -   cd into backend folder
--   run "yarn server" to start the server
+-   run yarn to get dependancies
+-   run "yarn start" to start
+-   the server is set to listen on port 3300
 
 #### DB Structure
 
@@ -37,17 +43,17 @@ stories:
 
         author: 'Anonymous', //`text('author', 128)`
 
-        title: 'Bitcoin Saved my life', //`text('title', 128)`
+        title: 'Bitcoin Saved my life', //`text('title', 128).notNullable().unique();`
 
         postDate: "12-3-17", //`timestamps(true, true)`
 
-        snippet: 'I was able to survive, and rebild my life again, because I left with nothing but Bitcoin', //`text('snippet', 256)`
+        snippet: 'I was able to survive, and rebild my life again, because I left with nothing but Bitcoin', //`text('snippet', 255)`
 
         approved: true // `boolean('approved')`
 
         approvedBy: user_id // `integer('user_id').unsigned().references('id').inTable('users')`
 
-        body: 'A friends of mine, one fo the first tech CEOs in Afghanistan, in 2014, was needing to pay her employees, young women. But their uncles, brothers and husbands would not let them open bank accounts. The men want to control everything there and paypall was banned and all that. So, she paid them in Bitcoin. They would keep their bitcoins in a hot wallet on their phones and come home and their husbands would not have any idea where the money was, etc. One of these young women had to flee Afghanistan. She was a victim of political violence and had to leave. She went on foot as a refugee through Iran, Turkey, and eventually settled in Germany. During this time, her Bitcoin, which she took with her, had accumulated in value quite a bit and she was entirely able to rebuild her life in Germany.' //`text('body')`
+        body: 'A friends of mine, one fo the first tech CEOs in Afghanistan, in 2014, was needing to pay her employees, young women. But their uncles, brothers and husbands would not let them open bank accounts. The men want to control everything there and paypall was banned and all that. So, she paid them in Bitcoin. They would keep their bitcoins in a hot wallet on their phones and come home and their husbands would not have any idea where the money was, etc. One of these young women had to flee Afghanistan. She was a victim of political violence and had to leave. She went on foot as a refugee through Iran, Turkey, and eventually settled in Germany. During this time, her Bitcoin, which she took with her, had accumulated in value quite a bit and she was entirely able to rebuild her life in Germany.' //`text('body').notNullable()`
 
     }
 
@@ -59,17 +65,15 @@ users:
 
     {
 
-        id: 1,
+        id: 1, //`increment()`
 
-        username: Jeff
+        username: 'Jeff', //`text('username', 255).notNullable().unique();`
 
-        password: #############
+        password: '#############', //`text('password', 255).notNullable()`
 
-        firstname:
+        first: 'Jeff', //`text('firstName', 255)`
 
-        lastname:
-
-        email:
+        last: 'Jefferson', //`text('lastName', 255)`
 
     }
 
@@ -98,7 +102,3 @@ refugeeOrganizations:
     }
 
 ]
-
-## SERVER STATUS:
-
-2-1-19 11:00pm: Down
