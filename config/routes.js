@@ -8,6 +8,7 @@ module.exports = server => {
 	server.get('/', (req, res) => {
 		res.send('API running');
 	});
+
 	server.post('/api/register', register);
 	server.post('/api/login', login);
 	server.get('/api/jokes', authenticate, getJokes);
