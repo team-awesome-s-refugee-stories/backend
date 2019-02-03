@@ -9,6 +9,9 @@ module.exports = server => {
 	server.post('/api/login', login); //login a user
 	server.get('/api/allstories', authenticate, getAllStories); //get all possible stories
 	server.get('/api/stories', getStories); //get only the stories that have been approved
+	//POST a new story
+	//PUT edit a story, protected
+	//DELETE remove a story
 };
 
 function sanityCheck(req, res) {
