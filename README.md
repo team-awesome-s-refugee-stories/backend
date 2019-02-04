@@ -105,6 +105,27 @@ Token expires after 30min (subject to change).
 
 ---
 
+#### Delete a story:
+
+`DELETE` `/api/removeuser/:id` where `:id` is the `id` of the user to be
+removed. Must be an admin to be authorized.
+
+Send with header:
+
+```
+{
+    authorization : "token"
+}
+```
+
+RETURNS:
+
+```
+1
+```
+
+---
+
 #### Get all possible stories:
 
 `GET` `/api/allstories`
@@ -231,7 +252,7 @@ RETURNS:
 
 #### UPDATE, EDIT, or APPROVE a story
 
-`PUT` `/api/update/:id` where `:id` is the `id` of the story to be updated.
+`PUT` `/api/updatestory/:id` where `:id` is the `id` of the story to be updated.
 
 Send with header:
 

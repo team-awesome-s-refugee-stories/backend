@@ -9,6 +9,8 @@ module.exports = server => {
 	//users
 	server.post('/api/register', register); //register a new user
 	server.post('/api/login', login); //login a user
+	server.delete('/api/removeuser/:id', authenticate, deleteUser); //delete a user
+	server.put('./api/updateuser/:id', authenticate, updateUser); //update a user
 
 	//stories
 	server.get('/api/allstories', authenticate, getAllStories); //get all possible stories
@@ -17,7 +19,7 @@ module.exports = server => {
 	server.get('/api/stories/:id', getStoriesById); //From approved stories, get one
 	server.post('/api/submit', submit); //POST a new story
 	server.delete('/api/deletestory/:id', authenticate, deleteStory); //DELETE remove a story, protected
-	server.put('/api/update/:id', authenticate, updateStory); //PUT edit a story, protected
+	server.put('/api/updatestory/:id', authenticate, updateStory); //PUT edit a story, protected
 };
 
 // Sanit check
@@ -59,6 +61,32 @@ function login(req, res) {
 					message: 'Incorrect username or password'
 				});
 			}
+		})
+		.catch(err => res.status(500).json(err));
+}
+
+// Delete a user
+function deleteUser(req, res) {
+	const id = req.params.id;
+
+	db('users')
+		.where({id: id})
+		.delete()
+		.then(thing => {
+			res.status(200).json(thing);
+		})
+		.catch(err => res.status(500).json(err));
+}
+
+// Update a user
+function updateUser(req, res) {
+	const id = req.params.id;
+
+	db('users')
+		.where({id: id})
+		.update(req.body)
+		.then(thing => {
+			res.status(200).json(thing);
 		})
 		.catch(err => res.status(500).json(err));
 }
