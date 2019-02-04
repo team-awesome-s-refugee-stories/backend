@@ -46,13 +46,13 @@ organizations near you to volunteer with.
 Send with Body:
 
 ```
-{username: `username`, password: `password`, first: `first`, last: `last`}
+{username: "username", password: "password", first: "first", last: "last"}
 ```
 
 RETURNS:
 
 ```
-[ `id` ]
+[ id ]
 ```
 
 ---
@@ -64,13 +64,13 @@ RETURNS:
 Send with Body:
 
 ```
-{username: `username`, password: `password`}
+{username: "username", password: "password"}
 ```
 
 RETURNS:
 
 ```
-{ "loggedInAs": `admin`, "token": `...KJGVFKJHDVAKDJBF...` }
+{ "loggedInAs": admin, "token": ...KJGVFKJHDVAKDJBF... }
 ```
 
 ( Be sure to save the token in localStorage, and pass it in the Authorization
@@ -85,7 +85,7 @@ tag on the Header. Token expires after 30min. )
 Send with header:
 
 ```
-{Authorization : `token`}
+{Authorization : "token"}
 ```
 
 RETURNS:
@@ -122,7 +122,7 @@ at gunpoint", body: "... story story story...", country: "Afghanistan" }
 RETURNS:
 
 ```
-[ `id` ]
+[ id ]
 ```
 
 ---
@@ -135,13 +135,13 @@ deleted.
 Send with header:
 
 ```
-{Authorization : `token`}
+{Authorization : "token"}
 ```
 
 RETURNS:
 
 ```
-`1`
+1
 ```
 
 ---
