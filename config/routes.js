@@ -30,6 +30,7 @@ function register(req, res) {
 	const userInfo = req.body;
 	const hash = bcrypt.hashSync(userInfo.password, 12);
 	userInfo.password = hash;
+	userInfo.roll = 'user';
 
 	db('users')
 		.insert(userInfo)

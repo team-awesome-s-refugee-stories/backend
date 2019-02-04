@@ -22,8 +22,12 @@ function authenticate(req, res, next) {
 					error: err
 				});
 
+			if (decoded.roll !== 'admin')
+				return res.status(401).json({
+					message:
+						'Not authorized to take this action, admin access needed, talk to your admin'
+				});
 			req.decoded = decoded;
-			console.log('decoded: ', decoded);
 			next();
 		});
 	} else {
@@ -38,7 +42,7 @@ function generateToken(user) {
 	console.log(user);
 	const payload = {
 		username: user.username,
-		roles: ['sales', 'admin'],
+		roll: user.roll,
 		id: user.id
 	};
 	const secret = jwtKey; //i do not understand how this line works

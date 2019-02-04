@@ -298,7 +298,8 @@ users:
         username: 'Jeff',
         password: '#############',
         first: 'Jeff',
-        last: 'Jefferson'
+        last: 'Jefferson',
+        roll: 'user'
     }
 ]
 ```
