@@ -37,7 +37,11 @@ organizations near you to volunteer with.
 
 `GET` `/`
 
-## RETURNS: "API running"
+RETURNS:
+
+```
+"API running"
+```
 
 #### Register a new user:
 
