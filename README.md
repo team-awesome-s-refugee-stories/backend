@@ -90,8 +90,19 @@ RETURNS:
 }
 ```
 
-( Be sure to save the token in localStorage, and pass it in the Authorization
-tag on the Header. Token expires after 30min. )
+Be sure to save the token in localStorage, in redux this might look like:
+
+```
+        case LOGIN_SUCCESS:
+			localStorage.setItem('jwt', action.payload.data.token);
+			return {
+				...state,
+				self: action.payload.data.loggedInAs,
+				logingIn: false
+			};
+```
+
+Token expires after 30min (subject to change).
 
 ---
 
@@ -103,14 +114,32 @@ Send with header:
 
 ```
 {
-    Authorization : "token"
+    authorization : "token"
 }
+```
+
+Accessing this token from local storage in a redux fashion might look like this:
+
+```
+export const getUsers = () => dispatch => {
+	const token = localStorage.getItem('jwt');
+	const requestOptions = {
+		headers: {
+			authorization: token
+		}
+	};
+	dispatch({type: USERLIST_START});
+	axios
+		.get(`${endpoint}/api/users`, requestOptions)
+		.then(...
 ```
 
 RETURNS:
 
-```
+````
+
 [ ... all info about all of the stories ... ]
+
 ```
 
 ---
@@ -122,7 +151,9 @@ RETURNS:
 RETURNS:
 
 ```
+
 [ ... all info about all of the stories which have been approved ... ]
+
 ```
 
 ---
@@ -134,18 +165,22 @@ RETURNS:
 Send with body:
 
 ```
+
 {
     author: "Anonomous",
     title: "We crossed at gunpoint",
     body: "... story story story...",
     country: "Afghanistan"
 }
+
 ```
 
 RETURNS:
 
 ```
+
 [ id ] // where id is the id of the submitted story
+
 ```
 
 ---
@@ -158,15 +193,19 @@ deleted.
 Send with header:
 
 ```
+
 {
-    Authorization : "token"
+    authorization : "token"
 }
+
 ```
 
 RETURNS:
 
 ```
+
 1
+
 ```
 
 ---
@@ -178,28 +217,26 @@ RETURNS:
 Send with header:
 
 ```
-{
-    Authorization : "token"
-}
+
+{ Authorization : "token" }
+
 ```
 
 Send with Body:
 
 ```
- {
-        author: "Anonomous",
-        title: "Bitcoin",
-        snippet: "I was able to...",
-        approved: false,
-        body: "...A friends of mine, ...",
-        country: "Afghdfanistan"
- }
+
+{ author: "Anonomous", title: "Bitcoin", snippet: "I was able to...", approved:
+false, body: "...A friends of mine, ...", country: "Afghdfanistan" }
+
 ```
 
 RETURNS:
 
 ```
+
 1
+
 ```
 
 ## DB Structure
@@ -209,33 +246,31 @@ This is preliminary, but my thoughts are:
 stories:
 
 ```
-[
-    {
-        id: 1,
-        author: 'Anonymous',
-        title: 'Bitcoin Saved my life',
-        postDate: "12-3-17",
-        snippet: 'I was able to survive, and rebild my life again, because I left with nothing but Bitcoin',
-        approved: true,
-        approvedBy: user_id
-        body: 'A friends of mine, one fo the first tech CEOs in Afghanistan, in 2014, was needing to pay her employees, young women. But their uncles, brothers and husbands would not let them open bank accounts. The men want to control everything there and paypall was banned and all that. So, she paid them in Bitcoin. They would keep their bitcoins in a hot wallet on their phones and come home and their husbands would not have any idea where the money was, etc. One of these young women had to flee Afghanistan. She was a victim of political violence and had to leave. She went on foot as a refugee through Iran, Turkey, and eventually settled in Germany. During this time, her Bitcoin, which she took with her, had accumulated in value quite a bit and she was entirely able to rebuild her life in Germany.'
-        country: Afghanistan
-    }
-]
+
+[ { id: 1, author: 'Anonymous', title: 'Bitcoin Saved my life', postDate:
+"12-3-17", snippet: 'I was able to survive, and rebild my life again, because I
+left with nothing but Bitcoin', approved: true, approvedBy: user_id body: 'A
+friends of mine, one fo the first tech CEOs in Afghanistan, in 2014, was needing
+to pay her employees, young women. But their uncles, brothers and husbands would
+not let them open bank accounts. The men want to control everything there and
+paypall was banned and all that. So, she paid them in Bitcoin. They would keep
+their bitcoins in a hot wallet on their phones and come home and their husbands
+would not have any idea where the money was, etc. One of these young women had
+to flee Afghanistan. She was a victim of political violence and had to leave.
+She went on foot as a refugee through Iran, Turkey, and eventually settled in
+Germany. During this time, her Bitcoin, which she took with her, had accumulated
+in value quite a bit and she was entirely able to rebuild her life in Germany.'
+country: Afghanistan } ]
+
 ```
 
 users:
 
 ```
-[
-    {
-        id: 1,
-        username: 'Jeff',
-        password: '#############',
-        first: 'Jeff',
-        last: 'Jefferson'
-    }
-]
+
+[ { id: 1, username: 'Jeff', password: '#############', first: 'Jeff', last:
+'Jefferson' } ]
+
 ```
 
 ##### Stretch:
@@ -243,14 +278,10 @@ users:
 refugeeOrganizations:
 
 ```
-[
-    {
-        id: 1,
-        name: Refugees R us
-        address:
-        website:
-        email:
-        gpslocation:
-    }
-]
+
+[ { id: 1, name: Refugees R us address: website: email: gpslocation: } ]
+
 ```
+
+```
+````
