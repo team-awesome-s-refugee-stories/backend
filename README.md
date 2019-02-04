@@ -19,7 +19,7 @@ organizations near you to volunteer with.
 
 ## SERVER STATUS:
 
-2-3-19: Works only on local machine
+2-4-19: Works only on local machine
 
 ### To set up the server locally:
 
@@ -63,7 +63,7 @@ Send with Body:
 RETURNS:
 
 ```
-[ id ]
+[ id ] //where id is the id of the new user
 ```
 
 ---
@@ -145,7 +145,7 @@ Send with body:
 RETURNS:
 
 ```
-[ id ]
+[ id ] // where id is the id of the submitted story
 ```
 
 ---
@@ -189,16 +189,18 @@ Send with Body:
  {
         author: "Anonomous",
         title: "Bitcoin",
-        snippet: "I was able tokj survive, and rebild my life again, because I left with nothing but Bitcoin",
+        snippet: "I was able to...",
         approved: false,
-        body: "A friends of mine, one fo the first tech CEOs in Afghanistan, in 2014, was needing to pay her employees, young women. But their uncles, brothers and husbands would not let them open bank accounts. The men want to control everything there and paypall was banned and all that. So, she paid them in Bitcoin. They would keep their bitcoins in a hot wallet on their phones and come home and their husbands would not have any idea where the money was, etc. One of these young women had to flee Afghanistan. She was a victim of political violence and had to leave. She went on foot as a refugee through Iran, Turkey, and eventually settled in Germany. During this time, her Bitcoin, which she took with her, had accumulated in value quite a bit and she was entirely able to rebuild her life in Germany.",
+        body: "...A friends of mine, ...",
         country: "Afghdfanistan"
  }
 ```
 
 RETURNS:
 
-`1`
+```
+1
+```
 
 ## DB Structure
 
