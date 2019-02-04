@@ -41,8 +41,8 @@ RETURNS: "API running"
 
 #### Register a new user:
 
-`POST` `/api/register` Send with Body: {username: `username`, password:
-`password`, first: `first`, last: `last`}
+`POST` `/api/register` Send with Body:
+`` {username: `username`, password: `password`, first: `first`, last: `last`} ``
 
 RETURNS: [ `id` ]
 
