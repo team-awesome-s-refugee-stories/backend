@@ -11,7 +11,8 @@ exports.seed = function(knex, Promise) {
 					password:
 						'$2a$12$/RIyLpjZCYkji4.Ps/hmZe6Mp3ZFLy/xR2KZqkzHGESHLaAF9LR4m',
 					first: 'Admin',
-					last: 'Astration'
+					last: 'Astration',
+					roll: 'admin'
 				},
 				{
 					id: 2,
@@ -19,7 +20,8 @@ exports.seed = function(knex, Promise) {
 					password:
 						'$2a$12$/RIyLpjZCYkji4.Ps/hmZe6Mp3ZFLy/xR2KZqkzHGESHLaAF9LR4m',
 					first: 'Jeff',
-					last: 'Jefferson'
+					last: 'Jefferson',
+					roll: 'user'
 				}
 			]);
 		});
