@@ -37,7 +37,7 @@ organizations near you to volunteer with.
 
 `GET` `/`
 
-RETURNS: "API running"
+## RETURNS: "API running"
 
 #### Register a new user:
 
@@ -54,6 +54,8 @@ RETURNS:
 ```
 [ `id` ]
 ```
+
+---
 
 #### Login a user:
 
@@ -74,6 +76,8 @@ RETURNS:
 ( Be sure to save the token in localStorage, and pass it in the Authorization
 tag on the Header. Token expires after 30min. )
 
+---
+
 #### Get all possible stories:
 
 `GET` `/api/allstories`
@@ -90,6 +94,8 @@ RETURNS:
 [ ... all info about all of the stories ... ]
 ```
 
+---
+
 #### Get approved stories:
 
 `GET` `/api/stories`
@@ -99,6 +105,8 @@ RETURNS:
 ```
 [ ... all info about all of the stories which have been approved ... ]
 ```
+
+---
 
 #### Add a new story:
 
@@ -117,6 +125,8 @@ RETURNS:
 [ `id` ]
 ```
 
+---
+
 #### Delete a story:
 
 `DELETE` `/api/deletestory/:id` where `:id` is the `id` of the story to be
@@ -133,6 +143,8 @@ RETURNS:
 ```
 `1`
 ```
+
+---
 
 ## DB Structure
 
