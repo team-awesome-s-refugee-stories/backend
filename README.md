@@ -101,11 +101,45 @@ case LOGIN_SUCCESS:
     };
 ```
 
-Token expires after 30min (subject to change).
+(Token expires after 30min (subject to change).
 
 ---
 
-#### Delete a story:
+#### UPDATE or EDIT a user
+
+`PUT` `/api/updateuser/:id` where `:id` is the `id` of the user to be updated.
+
+Send with header:
+
+```
+{
+    Authorization : "token"
+}
+```
+
+Send with Body:
+
+```
+{
+	username: 'jeff',
+	first: 'Jeffery',
+	last: 'Jeffersonian',
+	roll: 'user'
+}
+```
+
+(If you leave any field out of the object, it will default to its previous
+state)
+
+RETURNS:
+
+```
+1
+```
+
+---
+
+#### Delete a user:
 
 `DELETE` `/api/removeuser/:id` where `:id` is the `id` of the user to be
 removed. Must be an admin to be authorized.
@@ -123,6 +157,9 @@ RETURNS:
 ```
 1
 ```
+
+_WARNING_ if you are an admin and delete yourself, we'll need to reseed the
+server... stand by for more robust testing.
 
 ---
 
