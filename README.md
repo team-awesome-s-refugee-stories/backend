@@ -141,6 +141,26 @@ RETURNS:
 
 ---
 
+#### From all possible stories, get one by an ID:
+
+`GET` `/api/allstories/:id`
+
+Send with header:
+
+```
+{
+    authorization : token
+}
+```
+
+RETURNS:
+
+```
+{ ... info about story with specific id ... }
+```
+
+---
+
 #### Get approved stories:
 
 `GET` `/api/stories`
@@ -149,6 +169,18 @@ RETURNS:
 
 ```
 [ ... all info about all of the stories which have been approved ... ]
+```
+
+---
+
+#### From all approved stories, get one by an ID:
+
+`GET` `/api/stories/:id`
+
+RETURNS:
+
+```
+{ ... info about story with specific id, so long as that story is approved ... }
 ```
 
 ---

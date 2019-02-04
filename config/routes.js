@@ -5,10 +5,16 @@ const {authenticate, generateToken} = require('../auth/authenticate');
 
 module.exports = server => {
 	server.get('/', sanityCheck); //sanity Check
+
+	//users
 	server.post('/api/register', register); //register a new user
 	server.post('/api/login', login); //login a user
+
+	//stories
 	server.get('/api/allstories', authenticate, getAllStories); //get all possible stories
+	server.get('/api/allstories/:id', authenticate, getAllStoriesById); //From all possible stories, get one
 	server.get('/api/stories', getStories); //get only the stories that have been approved
+	server.get('/api/stories/:id', getStoriesById); //From approved stories, get one
 	server.post('/api/submit', submit); //POST a new story
 	server.delete('/api/deletestory/:id', authenticate, deleteStory); //DELETE remove a story, protected
 	server.put('/api/update/:id', authenticate, updateStory); //PUT edit a story, protected
@@ -67,12 +73,42 @@ function getAllStories(req, res) {
 		);
 }
 
+// Protected route to get a story behind a protected route
+function getAllStoriesById(req, res) {
+	const id = req.params.id;
+
+	db('stories')
+		.where({id: id})
+		.first()
+		.then(stories => {
+			res.status(201).json(stories);
+		})
+		.catch(err =>
+			res.status(500).json({message: 'Database error', error: err})
+		);
+}
+
 // Public route to get approved stories
 function getStories(req, res) {
 	db('stories')
 		.where({approved: 1})
 		.then(stories => {
 			res.status(201).json(stories);
+		})
+		.catch(err =>
+			res.status(500).json({message: 'Database error', error: err})
+		);
+}
+
+// Public route to get an approved story by an ID
+function getStoriesById(req, res) {
+	const id = req.params.id;
+
+	db('stories')
+		.where({approved: 1, id: id})
+		.first()
+		.then(story => {
+			res.status(201).json(story);
 		})
 		.catch(err =>
 			res.status(500).json({message: 'Database error', error: err})
