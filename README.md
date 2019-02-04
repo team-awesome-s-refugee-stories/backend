@@ -41,47 +41,98 @@ RETURNS: "API running"
 
 #### Register a new user:
 
-`POST` `/api/register` Send with Body:
+`POST` `/api/register`
+
+Send with Body:
 
 ```
 {username: `username`, password: `password`, first: `first`, last: `last`}
 ```
 
-RETURNS: [ `id` ]
+RETURNS:
+
+```
+[ `id` ]
+```
 
 #### Login a user:
 
-`POST` `/api/login` Send with Body: {username: `username`, password: `password`}
+`POST` `/api/login`
 
-RETURNS: { "loggedInAs": `admin`, "token": `...KJGVFKJHDVAKDJBF...` } ( Be sure
-to save the token in localStorage, and pass it in the Authorization tag on the
-Header. Token expires after 30min. )
+Send with Body:
+
+```
+{username: `username`, password: `password`}
+```
+
+RETURNS:
+
+```
+{ "loggedInAs": `admin`, "token": `...KJGVFKJHDVAKDJBF...` }
+```
+
+( Be sure to save the token in localStorage, and pass it in the Authorization
+tag on the Header. Token expires after 30min. )
 
 #### Get all possible stories:
 
-`GET` `/api/allstories` Send with header: {Authorization : `token`}
+`GET` `/api/allstories`
 
-RETURNS: [ ... all info about all of the stories ... ]
+Send with header:
+
+```
+{Authorization : `token`}
+```
+
+RETURNS:
+
+```
+[ ... all info about all of the stories ... ]
+```
 
 #### Get approved stories:
 
 `GET` `/api/stories`
 
-RETURNS: [ ... all info about all of the stories which have been approved ... ]
+RETURNS:
+
+```
+[ ... all info about all of the stories which have been approved ... ]
+```
 
 #### Add a new story:
 
-`POST` `/api/submit` Send with body: { author: "Anonomous", title: "We crossed
-at gunpoint", body: "... story story story...", country: "Afghanistan" }
+`POST` `/api/submit`
 
-RETURNS: [ `id` ]
+Send with body:
+
+```
+{ author: "Anonomous", title: "We crossed
+at gunpoint", body: "... story story story...", country: "Afghanistan" }
+```
+
+RETURNS:
+
+```
+[ `id` ]
+```
 
 #### Delete a story:
 
 `DELETE` `/api/deletestory/:id` where `:id` is the `id` of the story to be
-deleted. Send with header: {Authorization : `token`}
+deleted.
 
-RETURNS: `1`
+Send with header:
+
+```
+{Authorization : `token`}
+```
+
+RETURNS:
+
+```
+`1`
+```
 
 ## DB Structure
 
