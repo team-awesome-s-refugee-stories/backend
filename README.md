@@ -250,9 +250,14 @@ Send with Body:
     snippet: "I was able to...",
     approved: false,
     body: "...A friends of mine, ...",
-    country: "Afghdfanistan"
+    country: "Afghdfanistan",
+    url_picture: 'www.hello.com/fred.gif'
+    url_thumbnail: 'www.hello.com/fred_small.gif'
 }
 ```
+
+(If you leave any field out of the object, it will default to its previous
+state)
 
 RETURNS:
 
