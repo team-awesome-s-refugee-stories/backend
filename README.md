@@ -93,13 +93,13 @@ RETURNS:
 Be sure to save the token in localStorage, in redux this might look like:
 
 ```
-        case LOGIN_SUCCESS:
-			localStorage.setItem('jwt', action.payload.data.token);
-			return {
-				...state,
-				self: action.payload.data.loggedInAs,
-				logingIn: false
-			};
+case LOGIN_SUCCESS:
+    localStorage.setItem('jwt', action.payload.data.token);
+    return {
+        ...state,
+        self: action.payload.data.loggedInAs,
+        logingIn: false
+    };
 ```
 
 Token expires after 30min (subject to change).
@@ -136,7 +136,7 @@ export const getUsers = () => dispatch => {
 
 RETURNS:
 
-````
+```
 
 [ ... all info about all of the stories ... ]
 
@@ -284,4 +284,5 @@ refugeeOrganizations:
 ```
 
 ```
-````
+
+```
