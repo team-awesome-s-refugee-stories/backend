@@ -43,6 +43,8 @@ RETURNS:
 "API running"
 ```
 
+---
+
 #### Register a new user:
 
 `POST` `/api/register`
