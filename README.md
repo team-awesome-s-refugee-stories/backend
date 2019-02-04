@@ -137,9 +137,7 @@ export const getUsers = () => dispatch => {
 RETURNS:
 
 ```
-
 [ ... all info about all of the stories ... ]
-
 ```
 
 ---
@@ -151,9 +149,7 @@ RETURNS:
 RETURNS:
 
 ```
-
 [ ... all info about all of the stories which have been approved ... ]
-
 ```
 
 ---
@@ -165,22 +161,18 @@ RETURNS:
 Send with body:
 
 ```
-
 {
     author: "Anonomous",
     title: "We crossed at gunpoint",
     body: "... story story story...",
     country: "Afghanistan"
 }
-
 ```
 
 RETURNS:
 
 ```
-
 [ id ] // where id is the id of the submitted story
-
 ```
 
 ---
@@ -193,19 +185,15 @@ deleted.
 Send with header:
 
 ```
-
 {
     authorization : "token"
 }
-
 ```
 
 RETURNS:
 
 ```
-
 1
-
 ```
 
 ---
@@ -217,26 +205,26 @@ RETURNS:
 Send with header:
 
 ```
-
 { Authorization : "token" }
-
 ```
 
 Send with Body:
 
 ```
-
-{ author: "Anonomous", title: "Bitcoin", snippet: "I was able to...", approved:
-false, body: "...A friends of mine, ...", country: "Afghdfanistan" }
-
+{
+    author: "Anonomous",
+    title: "Bitcoin",
+    snippet: "I was able to...",
+    approved: false,
+    body: "...A friends of mine, ...",
+    country: "Afghdfanistan"
+}
 ```
 
 RETURNS:
 
 ```
-
 1
-
 ```
 
 ## DB Structure
@@ -246,31 +234,33 @@ This is preliminary, but my thoughts are:
 stories:
 
 ```
-
-[ { id: 1, author: 'Anonymous', title: 'Bitcoin Saved my life', postDate:
-"12-3-17", snippet: 'I was able to survive, and rebild my life again, because I
-left with nothing but Bitcoin', approved: true, approvedBy: user_id body: 'A
-friends of mine, one fo the first tech CEOs in Afghanistan, in 2014, was needing
-to pay her employees, young women. But their uncles, brothers and husbands would
-not let them open bank accounts. The men want to control everything there and
-paypall was banned and all that. So, she paid them in Bitcoin. They would keep
-their bitcoins in a hot wallet on their phones and come home and their husbands
-would not have any idea where the money was, etc. One of these young women had
-to flee Afghanistan. She was a victim of political violence and had to leave.
-She went on foot as a refugee through Iran, Turkey, and eventually settled in
-Germany. During this time, her Bitcoin, which she took with her, had accumulated
-in value quite a bit and she was entirely able to rebuild her life in Germany.'
-country: Afghanistan } ]
-
+[
+    {
+        id: 1,
+        author: 'Anonymous',
+        title: 'Bitcoin Saved my life',
+        postDate: "12-3-17",
+        snippet: 'I was able to survive, and rebild my life again, because I left with nothing but Bitcoin',
+        approved: true,
+        approved_by_user_id: user_id,
+         body: 'A friends of mine, one fo the first tech CEOs in Afghanistan, in 2014, was needing to pay her employees, young women. But their uncles, brothers and husbands would not let them open bank accounts. The men want to control everything there and paypall was banned and all that. So, she paid them in Bitcoin. They would keep their bitcoins in a hot wallet on their phones and come home and their husbands would not have any idea where the money was, etc. One of these young women had to flee Afghanistan. She was a victim of political violence and had to leave. She went on foot as a refugee through Iran, Turkey, and eventually settled in Germany. During this time, her Bitcoin, which she took with her, had accumulated in value quite a bit and she was entirely able to rebuild her life in Germany.'
+        country: Afghanistan
+    }
+]
 ```
 
 users:
 
 ```
-
-[ { id: 1, username: 'Jeff', password: '#############', first: 'Jeff', last:
-'Jefferson' } ]
-
+[
+    {
+        id: 1,
+        username: 'Jeff',
+        password: '#############',
+        first: 'Jeff',
+        last: 'Jefferson'
+    }
+]
 ```
 
 ##### Stretch:
@@ -279,10 +269,15 @@ refugeeOrganizations:
 
 ```
 
-[ { id: 1, name: Refugees R us address: website: email: gpslocation: } ]
-
-```
-
-```
+[
+    {
+        id: 1,
+        name: Refugees R us
+        address:
+        website:
+        email:
+        gpslocation:
+    }
+]
 
 ```
