@@ -97,7 +97,6 @@ case LOGIN_SUCCESS:
     localStorage.setItem('jwt', action.payload.data.token);
     return {
         ...state,
-        self: action.payload.data.loggedInAs,
         logingIn: false
     };
 ```
@@ -114,23 +113,23 @@ Send with header:
 
 ```
 {
-    authorization : "token"
+    authorization : token
 }
 ```
 
 Accessing this token from local storage in a redux fashion might look like this:
 
 ```
-export const getUsers = () => dispatch => {
+export const getAllStories = () => dispatch => {
 	const token = localStorage.getItem('jwt');
 	const requestOptions = {
 		headers: {
 			authorization: token
 		}
 	};
-	dispatch({type: USERLIST_START});
+	dispatch({type: STORYLIST_START});
 	axios
-		.get(`${endpoint}/api/users`, requestOptions)
+		.get(`${endpoint}/api/allstories`, requestOptions)
 		.then(...
 ```
 
@@ -205,7 +204,9 @@ RETURNS:
 Send with header:
 
 ```
-{ Authorization : "token" }
+{
+    Authorization : "token"
+}
 ```
 
 Send with Body:
