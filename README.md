@@ -73,6 +73,13 @@ at gunpoint", body: "... story story story...", country: "Afghanistan" }
 
 RETURNS: [ `id` ]
 
+#### Delete a story:
+
+`DELETE` `/api/deletestory/:id` where `:id` is the `id` of the story to be
+deleted. Send with header: {Authorization : `token`}
+
+RETURNS: `1`
+
 ## DB Structure
 
 This is preliminary, but my thoughts are:

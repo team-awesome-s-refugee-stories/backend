@@ -10,8 +10,8 @@ module.exports = server => {
 	server.get('/api/allstories', authenticate, getAllStories); //get all possible stories
 	server.get('/api/stories', getStories); //get only the stories that have been approved
 	server.post('/api/submit', submit); //POST a new story
+	server.delete('/api/deletestory/:id', authenticate, deleteStory); //DELETE remove a story, protected
 	//PUT edit a story, protected
-	//DELETE remove a story
 };
 
 // Sanit check
@@ -89,6 +89,19 @@ function submit(req, res) {
 		.insert(story)
 		.then(ids => {
 			res.status(201).json(ids);
+		})
+		.catch(err => res.status(500).json(err));
+}
+
+// Delete a story
+function deleteStory(req, res) {
+	const id = req.params.id;
+
+	db('stories')
+		.where({id: id})
+		.delete()
+		.then(thing => {
+			res.status(200).json(thing);
 		})
 		.catch(err => res.status(500).json(err));
 }
