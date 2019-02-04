@@ -16,10 +16,14 @@ function authenticate(req, res, next) {
 
 	if (token) {
 		jwt.verify(token, jwtKey, (err, decoded) => {
-			if (err) return res.status(401).json(err);
+			if (err)
+				return res.status(401).json({
+					message: 'Invalide token, please log in and try again',
+					error: err
+				});
 
 			req.decoded = decoded;
-
+			console.log('decoded: ', decoded);
 			next();
 		});
 	} else {
@@ -31,9 +35,11 @@ function authenticate(req, res, next) {
 
 //generateToken
 function generateToken(user) {
+	console.log(user);
 	const payload = {
 		username: user.username,
-		roles: ['sales', 'admin']
+		roles: ['sales', 'admin'],
+		id: user.id
 	};
 	const secret = jwtKey; //i do not understand how this line works
 	const options = {expiresIn: '30m'};

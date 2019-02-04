@@ -11,7 +11,7 @@ module.exports = server => {
 	server.get('/api/stories', getStories); //get only the stories that have been approved
 	server.post('/api/submit', submit); //POST a new story
 	server.delete('/api/deletestory/:id', authenticate, deleteStory); //DELETE remove a story, protected
-	//PUT edit a story, protected
+	server.put('/api/update/:id', authenticate, updateStory); //PUT edit a story, protected
 };
 
 // Sanit check
@@ -100,6 +100,21 @@ function deleteStory(req, res) {
 	db('stories')
 		.where({id: id})
 		.delete()
+		.then(thing => {
+			res.status(200).json(thing);
+		})
+		.catch(err => res.status(500).json(err));
+}
+
+// Update a story
+function updateStory(req, res) {
+	const id = req.params.id;
+	userId = req.decoded.id;
+	req.body.approved_by_user_id = userId;
+
+	db('stories')
+		.where({id: id})
+		.update(req.body)
 		.then(thing => {
 			res.status(200).json(thing);
 		})
