@@ -66,6 +66,13 @@ RETURNS: [ ... all info about all of the stories ... ]
 
 RETURNS: [ ... all info about all of the stories which have been approved ... ]
 
+#### Add a new story:
+
+`POST` `/api/submit` Send with body: { author: "Anonomous", title: "We crossed
+at gunpoint", body: "... story story story...", country: "Afghanistan" }
+
+RETURNS: [ `id` ]
+
 ## DB Structure
 
 This is preliminary, but my thoughts are:

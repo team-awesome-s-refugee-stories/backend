@@ -9,17 +9,18 @@ module.exports = server => {
 	server.post('/api/login', login); //login a user
 	server.get('/api/allstories', authenticate, getAllStories); //get all possible stories
 	server.get('/api/stories', getStories); //get only the stories that have been approved
-	//POST a new story
+	server.post('/api/submit', submit); //POST a new story
 	//PUT edit a story, protected
 	//DELETE remove a story
 };
 
+// Sanit check
 function sanityCheck(req, res) {
 	res.send('API running');
 }
 
+// User registration
 function register(req, res) {
-	// implement user registration
 	const userInfo = req.body;
 	const hash = bcrypt.hashSync(userInfo.password, 12);
 	userInfo.password = hash;
@@ -32,8 +33,8 @@ function register(req, res) {
 		.catch(err => res.status(500).json(err));
 }
 
+// Uer login
 function login(req, res) {
-	// implement user login
 	const creds = req.body;
 
 	db('users')
@@ -55,6 +56,7 @@ function login(req, res) {
 		.catch(err => res.status(500).json(err));
 }
 
+// Protected route to get all stories
 function getAllStories(req, res) {
 	db('stories')
 		.then(stories => {
@@ -65,6 +67,7 @@ function getAllStories(req, res) {
 		);
 }
 
+// Public route to get approved stories
 function getStories(req, res) {
 	db('stories')
 		.where({approved: 1})
@@ -74,4 +77,18 @@ function getStories(req, res) {
 		.catch(err =>
 			res.status(500).json({message: 'Database error', error: err})
 		);
+}
+
+// Add a new story
+function submit(req, res) {
+	let story = req.body;
+	story.approved = 0;
+	story.snippet = '';
+
+	db('stories')
+		.insert(story)
+		.then(ids => {
+			res.status(201).json(ids);
+		})
+		.catch(err => res.status(500).json(err));
 }
