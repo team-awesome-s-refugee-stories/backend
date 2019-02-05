@@ -19,7 +19,15 @@ organizations near you to volunteer with.
 
 ## SERVER STATUS:
 
-2-4-19: Works only on local machine
+2-4-19: Works on local build and Heroko deploy
+
+Point the requests to:
+
+`https://refugeestories.herokuapp.com/`
+
+such that:
+
+`https://refugeestories.herokuapp.com/api/stories`
 
 ### To set up the server locally:
 
@@ -101,7 +109,7 @@ case LOGIN_SUCCESS:
     };
 ```
 
-(Token expires after 30min (subject to change).
+(Token expires after 30min (subject to change)).
 
 ---
 
