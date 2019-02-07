@@ -39,7 +39,6 @@ function authenticate(req, res, next) {
 
 //generateToken
 function generateToken(user) {
-	console.log(user);
 	const payload = {
 		username: user.username,
 		roll: user.roll,
